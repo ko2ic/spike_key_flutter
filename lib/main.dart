@@ -32,7 +32,7 @@ class MyHomePage extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           ListTile(
-            title: const Text("UniqueKey"),
+            title: const Text("UniqueKeyのサンプル"),
             onTap: () {
               Navigator.push(
                   context,

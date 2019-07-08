@@ -11,49 +11,57 @@ class UniqueKeySamplePage extends StatefulWidget {
 }
 
 class UniqueKeySamplePageState extends State<UniqueKeySamplePage> {
-  List<Widget> tiles = [
-    StatelessRandomTitle(),
-    StatelessRandomTitle(),
+//  List<Widget> titles = [
+//    StatelessRandomTitle(),
+//    StatelessRandomTitle(),
+//  ];
+  List<Widget> titles = [
+    StatefulRandomTitle(),
+    StatefulRandomTitle(),
   ];
+
+//  List<Widget> titles = [
+//    StatefulRandomTitle(key: UniqueKey()),
+//    StatefulRandomTitle(key: UniqueKey()),
+//  ];
+
+//  List<Widget> titles = [
+//    Padding(
+//      key: UniqueKey(),
+//      padding: const EdgeInsets.all(8.0),
+//      child: StatefulRandomTitle(),
+//    ),
+//    Padding(
+//      key: UniqueKey(),
+//      padding: const EdgeInsets.all(8.0),
+//      child: StatefulRandomTitle(),
+//    ),
+//  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Unique Key Sample"),
-      ),
-      body: Column(children: tiles),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.sentiment_very_satisfied),
-        onPressed: swapTiles,
-      ),
-    );
+        appBar: AppBar(
+          title: Text("Unique Key Sample"),
+        ),
+        body: Column(
+          children: <Widget>[
+            RaisedButton(child: Text("入れ替える"), onPressed: swapTitles),
+            Column(children: titles),
+          ],
+        ));
   }
 
-  swapTiles() {
+  swapTitles() {
     setState(() {
-      tiles.insert(1, tiles.removeAt(0));
+      titles.insert(1, titles.removeAt(0));
     });
   }
 }
 
-class StatelessRandomTitle extends StatelessWidget {
-  final random = Random().nextInt(1000);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ListTile(
-          title: Text(random.toString()),
-        ),
-        Divider(),
-      ],
-    );
-  }
-}
-
 class StatefulRandomTitle extends StatefulWidget {
+  StatefulRandomTitle({Key key}) : super(key: key);
+
   @override
   StatefulRandomTitleState createState() => StatefulRandomTitleState();
 }
@@ -66,6 +74,19 @@ class StatefulRandomTitleState extends State<StatefulRandomTitle> {
     super.initState();
     random = Random().nextInt(1000);
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(random.toString()),
+    );
+  }
+}
+
+// statelessの場合は以下
+
+class StatelessRandomTitle extends StatelessWidget {
+  final random = Random().nextInt(1000);
 
   @override
   Widget build(BuildContext context) {
