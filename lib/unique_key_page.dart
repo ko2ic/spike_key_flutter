@@ -15,15 +15,26 @@ class UniqueKeySamplePageState extends State<UniqueKeySamplePage> {
 //    StatelessRandomTitle(),
 //    StatelessRandomTitle(),
 //  ];
-  List<Widget> titles = [
-    StatefulRandomTitle(),
-    StatefulRandomTitle(),
-  ];
+//  List<Widget> titles = [
+//    StatefulRandomTitle(),
+//    StatefulRandomTitle(),
+//  ];
 
 //  List<Widget> titles = [
-//    StatefulRandomTitle(key: UniqueKey()),
-//    StatefulRandomTitle(key: UniqueKey()),
+//    StatefulRandomTitle(key: Key("1")),
+//    StatefulRandomTitle(key: Key("2")),
 //  ];
+
+  List<Widget> titles = [
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: StatefulRandomTitle(key: UniqueKey()),
+    ),
+    Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: StatefulRandomTitle(key: UniqueKey()),
+    ),
+  ];
 
 //  List<Widget> titles = [
 //    Padding(
